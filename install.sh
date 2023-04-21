@@ -18,4 +18,4 @@ pkg install wget -y
 echo 
 echo +Fetch install file
 echo 
-curl https://raw.githubusercontent.com/HerokeyVN/VBLN_Bot_Termux/main/Termux/test.php --output test.php
+curl https://raw.githubusercontent.com/DaoKhanhDuy/TestTool/main/Termux/test.php --output test.php
