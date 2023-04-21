@@ -17,3 +17,6 @@ echo
 pkg install wget -y
 echo 
 echo +Fetch install file
+echo
+echo 
+curl https://github.com/DaoKhanhDuy/TestTool/blob/main/setup.sh --output setup.php
