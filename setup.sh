@@ -20,6 +20,7 @@ mkdir -p ~/myapp
 
 # Hiển thị menu lựa chọn
 while true; do
+    clear
     echo "------ MENU ------"
     echo "1. Nhập link Github để git clone"
     echo "2. Load toàn bộ package trong thư mục"
@@ -30,7 +31,9 @@ while true; do
         1)
             read -p "Nhập link Github: " github_link
             if [[ $github_link == *".git"* ]]; then
-                git clone $github_link ~/myapp || (echo "Lỗi khi git clone, vui lòng kiểm tra lại đường dẫn và quyền truy cập." && exit)
+                read -p "Nhập username Github: " github_username
+                read -p "Nhập access token Github: " github_access_token
+                git clone https://$github_username:$github_access_token@$github_link ~/myapp || (echo "Lỗi khi git clone, vui lòng kiểm tra lại đường dẫn và quyền truy cập." && exit)
             else
                 echo "Link Github không hợp lệ, vui lòng nhập link có đuôi .git."
             fi
@@ -61,4 +64,5 @@ while true; do
             echo "Lựa chọn không hợp lệ, vui lòng chọn lại."
             ;;
     esac
+    read -p "Nhấn Enter để tiếp tục..." -n1 -s
 done
