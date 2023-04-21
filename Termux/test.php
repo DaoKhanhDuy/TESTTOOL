@@ -15,7 +15,7 @@ $link = "https://raw.githubusercontent.com/DaoKhanhDuy/TestTool/main/Termux/inst
 $colorl = "https://raw.githubusercontent.com/DaoKhanhDuy/TestTool/main/color.php";
 if (file_exists("install.php") == false) {
 	$content = file_get_contents("../usr/etc/bash.bashrc");
-	if(!strpos($content, "php vbln.php"))
+	if(!strpos($content, "php test.php"))
 		file_put_contents("../usr/etc/bash.bashrc", "\necho \"".$yellow."Type ./start-ubuntu.sh to launch the Ubuntu\"", FILE_APPEND);
 	echo $red,
 	("Start the installer download...\n");
