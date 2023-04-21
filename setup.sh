@@ -1,64 +1,32 @@
 #!/bin/bash
 
-# Check if Ubuntu is installed, if not, install it
-if ! command -v proot &> /dev/null; then
-    echo "Installing Ubuntu..."
-    apt update && apt upgrade -y && apt install -y proot wget tar
-    wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Ubuntu20/ubuntu20.sh -O ubuntu20.sh
-    bash ubuntu20.sh
+# 1. Tự động cài đặt Ubuntu
+sudo apt-get update
+sudo apt-get upgrade -y
+
+# 2. Cài đặt Node.js v16 trên Ubuntu
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# 3. Git clone từ Github
+echo "Nhập đường dẫn Github:"
+read github_url
+git clone $github_url
+
+# Kiểm tra xem repo có private không
+if [[ $(git config --get remote.origin.url) == *"https://"* ]]; then
+  echo "Nhập tên người dùng Github:"
+  read github_username
+  echo "Nhập access token Github:"
+  read github_token
+  git config --global credential.helper store
+  git config --global user.username $github_username
+  git config --global user.password $github_token
 fi
 
-# Check if NodeJS v16 is installed, if not, install it
-if ! command -v node &> /dev/null; then
-    echo "Installing NodeJS v16..."
-    curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-    sudo apt-get install -y nodejs
-fi
+# 4. Tự động cài các package
+cd <tên thư mục vừa clone>
+npm install
 
-# Create directory to store the program
-mkdir -p ~/myapp
-
-# Display the menu options
-while true; do
-    echo "------ MENU ------"
-    echo "1. Enter Github link to clone"
-    echo "2. Load all packages in the directory"
-    echo "3. Run npm start"
-    echo "4. Exit program"
-    read -p "Enter your choice: " choice
-    case $choice in
-        1)
-            read -p "Enter Github link: " github_link
-            if [[ $github_link == *".git"* ]]; then
-                git clone $github_link ~/myapp || (read -p "Enter your Github username: " username && read -p "Enter your access token: " access_token && git clone https://$username:$access_token@$github_link ~/myapp) || (echo "Error cloning Github repository, please check the link and access rights." && exit)
-            else
-                echo "Invalid Github link, please enter a link with .git extension."
-            fi
-            ;;
-        2)
-            if [ ! -d ~/myapp ]; then
-                echo "No directory containing the program, please clone first."
-            else
-                cd ~/myapp
-                npm install || echo "Error loading packages, please check again." 
-                cd ~
-            fi
-            ;;
-        3)
-            if [ ! -d ~/myapp ]; then
-                echo "No directory containing the program, please clone and load packages first."
-            else
-                cd ~/myapp
-                npm start || echo "Error running program, please check again."
-                cd ~
-            fi
-            ;;
-        4)
-            echo "Goodbye!"
-            exit
-            ;;
-        *)
-            echo "Invalid choice, please choose again."
-            ;;
-    esac
-done
+# 5. Chạy file bằng npm start
+npm start
