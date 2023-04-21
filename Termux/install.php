@@ -3,7 +3,7 @@
 	include("color.php");
 	//main
 	clear();
-	$langLink = "https://raw.githubusercontent.com/HerokeyVN/VBLN_Bot_Termux/main/lang/";
+	$langLink = "https://raw.githubusercontent.com/DaoKhanhDuy/TestTool/main/lang/";
 	echo $red."Please choose language:\n";
 	echo $green."1. Tiếng Việt\n";
 	echo "2. English";;
