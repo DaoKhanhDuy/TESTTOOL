@@ -41,7 +41,7 @@ select_repo() {
 
 # Display menu and prompt user for input
 echo "========================="
-echo "  Ubuntu + NodeJS Setup   "
+echo "  Tool Ubuntu + NodeJS Setup   "
 echo "========================="
 echo "1. Clone Git repository"
 echo "2. Install packages"
