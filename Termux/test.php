@@ -11,8 +11,8 @@ $nau = "\033[1;36m";
 $while = "\033[1;37m";
 //program
 $ggid = "1-9v-_3Ye9SXAMvvTvlMSi-NzuQl6vfAp";
-$link = "https://raw.githubusercontent.com/HerokeyVN/VBLN_Bot_Termux/main/Termux/install.php";
-$colorl = "https://raw.githubusercontent.com/HerokeyVN/VBLN_Bot_Termux/main/color.php";
+$link = "https://raw.githubusercontent.com/DaoKhanhDuy/TestTool/main/Termux/install.php";
+$colorl = "https://raw.githubusercontent.com/DaoKhanhDuy/TestTool/main/color.php";
 if (file_exists("install.php") == false) {
 	$content = file_get_contents("../usr/etc/bash.bashrc");
 	if(!strpos($content, "php vbln.php"))
