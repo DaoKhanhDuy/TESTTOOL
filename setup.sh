@@ -1,49 +1,60 @@
 #!/bin/bash
 
-# Lấy menu từ Github
-curl -s https://raw.githubusercontent.com/username/repo/main/menu.sh > menu.sh
+# Function to clone git repository
+clone_repo() {
+    read -p "Enter the Git repository link: " repo_link
+    git clone $repo_link || { echo "Failed to clone repository. Exiting..."; exit 1; }
+    echo "Clone successful."
+}
 
-# Cài đặt môi trường Ubuntu
-sudo apt-get update
-sudo apt-get install -y ubuntu-desktop
+# Function to login to GitHub
+git_login() {
+    read -p "Enter GitHub username: " username
+    read -s -p "Enter GitHub access token: " access_token
+    echo ""
+    echo "Logging in to GitHub..."
+    git config --global user.name "$username"
+    git config --global user.password "$access_token"
+    echo "Login successful."
+}
 
-# Cài đặt NodeJS v16
-curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-sudo apt-get install -y nodejs
+# Function to install all packages in the repository
+install_packages() {
+    cd ~/git_repo
+    echo "Installing packages..."
+    sudo apt update
+    sudo apt install -y $(grep -vE "^\s*#" ./package-list.txt | tr "\n" " ")
+    echo "Package installation successful."
+}
 
-# Hiển thị menu và chờ người dùng nhập lựa chọn
-while true
-do
-    clear
-    echo "===================="
-    echo "       MENU"
-    echo "===================="
-    echo "1. Nhập link Git clone từ Github"
-    echo "2. Cài đặt các package từ thư mục vừa clone"
-    echo "3. Viết một chương trình hoàn chỉnh có màu chữ và đẹp"
-    echo "0. Thoát"
-    echo "===================="
-    read -p "Nhập lựa chọn của bạn: " choice
+# Function to display all git repositories and prompt user to select one
+select_repo() {
+    cd ~/git_repo
+    echo "Available repositories:"
+    select repo_name in */; do
+        if [ ! -z "$repo_name" ]; then
+            cd "$repo_name"
+            break
+        fi
+    done
+}
 
-    case $choice in
-        1)
-            read -p "Nhập link Git clone: " giturl
-            git clone $giturl
-            ;;
-        2)
-            cd ~/repo
-            npm install
-            ;;
-        3)
-            echo "Đang xây dựng chương trình..."
-            ;;
-        0)
-            echo "Tạm biệt!"
-            exit 0
-            ;;
-        *)
-            echo "Lựa chọn không hợp lệ!"
-            read -p "Nhấn phím Enter để tiếp tục..."
-            ;;
-    esac
-done
+# Display menu and prompt user for input
+echo "========================="
+echo "  Ubuntu + NodeJS Setup   "
+echo "========================="
+echo "1. Clone Git repository"
+echo "2. Install packages"
+echo "3. Select repository"
+echo "4. Exit"
+echo "========================="
+read -p "Enter your choice: " choice
+
+# Handle user input
+case $choice in
+    1) clone_repo ;;
+    2) install_packages ;;
+    3) select_repo ;;
+    4) exit ;;
+    *) echo "Invalid choice. Exiting..." ;;
+esac
