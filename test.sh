@@ -51,6 +51,7 @@ echo "========================="
 read -p "Enter your choice: " choice
 
 # Handle user input
+handleInput(){
 case $choice in
     1) clone_repo ;;
     2) install_packages ;;
@@ -58,3 +59,5 @@ case $choice in
     4) exit ;;
     *) echo "Invalid choice. Exiting..." ;;
 esac
+}
+handleInput
