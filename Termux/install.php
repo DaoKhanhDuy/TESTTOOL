@@ -212,28 +212,6 @@
 	sleep(1);
 	clear();
 	
-	print_delay($green.$lang["clone_bot"]."\n", 250);
-	echo $cyan.$line3.$green;
-	@system("echo \"git clone https://github.com/DaoKhanhDuy/TestBot && mv ./TestBot ./Bot\"|bash ./start-ubuntu.sh");
-	echo ("\n");
-	while(!file_exists("./ubuntu-fs/root/VBLN/main.js")){
-	    print_delay($green.$lang["botNotExit"]."\n", 250);
-	    echo $cyan.$line3.$green;
-	    @system("echo \"git clone https://github.com/DaoKhanhDuy/TestBot && mv ./TestBot ./Bot\"|bash ./start-ubuntu.sh");
-	    echo ("\n");
-	}
-	print_delay($yellow.$lang["done"], 500);
-	sleep(1);
-	clear();
-	
-	print_delay($green.$lang["module_bot"]."\n", 250);
-	echo $cyan.$line3.$green;
-	@system("echo \"cd ./Bot && npm i\"|bash ./start-ubuntu.sh");
-	echo ("\n");
-	print_delay($yellow.$lang["done"], 500);
-	sleep(1);
-	clear();
-	
 	print_delay($green.$lang["update_menu"], 250);
 	print_delay("..", 500);
 	@system("curl -silent ".$linkmn." --output menu.php", $exitcode);
