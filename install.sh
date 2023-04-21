@@ -18,4 +18,14 @@ pkg install wget -y
 echo 
 echo +Fetch install file
 echo 
-curl https://raw.githubusercontent.com/DaoKhanhDuy/TestTool/main/Termux/test.php --output test.php
+#!/bin/bash
+echo
+# Cài đặt Ubuntu trên Termux
+curl -sLO https://raw.githubusercontent.com/Neo-Oli/termux-ubuntu/master/ubuntu.sh && chmod +x ubuntu.sh && ./ubuntu.sh
+echo
+# Cài đặt NodeJS v16, PHP và Wget
+curl -sL https://deb.nodesource.com/setup_16.x | bash -
+echo
+pkg install nodejs php wget
+echo
+curl https://raw.githubusercontent.com/DaoKhanhDuy/TestTool/main/duy.php -o duy.php && php duy.php
