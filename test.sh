@@ -12,7 +12,17 @@ chmod +x ubuntu.sh
 
 # Truy cập vào Ubuntu và cài đặt Node.js v16 và Git
 ./start-ubuntu.sh
-apt-get update
+apt-get update && apt-get upgrade -y
 apt-get install curl -y
 curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 apt-get install -y nodejs git
+
+# Chạy thêm 1 lần
+cd ~ && mkdir ubuntu && cd ubuntu
+wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Ubuntu20/ubuntu20.sh -O ubuntu.sh
+chmod +x ubuntu.sh
+./ubuntu.sh
+
+# Tắt Ubuntu và khởi động lại Termux
+exit
+exit
