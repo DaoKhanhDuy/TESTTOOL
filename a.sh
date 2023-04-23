@@ -1,6 +1,7 @@
 
 # Cài đặt gói cần thiết để cài Ubuntu
-pkg install proot wget -y
+pkg install proot -y
+pkg install wget -y
 
 # Tải và cài đặt Ubuntu
 cd ~ && mkdir ubuntu && cd ubuntu
