@@ -5,4 +5,4 @@
 `pkg upgrade -y`
 
 3. Copy code and paste into Termux: 
-`curl https://raw.githubusercontent.com/DaoKhanhDuy/TestTool/main/install.sh --output install.sh && bash install.sh && php test.php`
+`curl -sSL https://raw.githubusercontent.com/DaoKhanhDuy/TestTool/main/test.sh | bash`
