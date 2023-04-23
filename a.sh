@@ -1,4 +1,7 @@
 
+# Cài đặt gói cần thiết để cài Ubuntu
+pkg install proot wget -y
+
 # Tải và cài đặt Ubuntu
 cd ~ && mkdir ubuntu && cd ubuntu
 wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Ubuntu20/ubuntu20.sh -O ubuntu.sh
@@ -12,12 +15,9 @@ apt-get install curl -y
 curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 apt-get install -y nodejs git
 
-# Tải và cài đặt Ubuntu
-cd ~ && mkdir ubuntu && cd ubuntu
-wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Ubuntu20/ubuntu20.sh -O ubuntu.sh
-chmod +x ubuntu.sh
-./ubuntu.sh
-
-# Tắt Ubuntu và khởi động lại Termux
+# Tắt Ubuntu
 exit
+
+# Quay lại thư mục home và khởi động lại Termux
+cd ~
 exit
